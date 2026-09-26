@@ -94,10 +94,90 @@ export const work = [
   },
 ]
 
-// TODO: your own GitHub data projects go here. The section stays hidden while this is empty.
-// Example:
-// { title: 'NYC Taxi ELT', stack: ['Python', 'PostgreSQL', 'dbt'], summary: 'Daily ELT of 3M rows into a star schema…', link: 'https://github.com/…' },
-export const projects = []
+// Personal analytics projects. Images live in public/projects/.
+// `figures` are read straight off each dashboard — keep them in sync if you rebuild one.
+// Add `repo: 'https://github.com/…'` to any project to show a "Code" button.
+export const projects = [
+  {
+    id: 'energy',
+    title: 'Global Energy Consumption Pipeline',
+    stack: ['AWS S3', 'Snowflake', 'SQL', 'Tableau'],
+    image: './projects/energy.webp',
+    summary:
+      'End-to-end analytics pipeline: household energy data loaded from AWS S3 into Snowflake, transformed with SQL, and visualised in Tableau.',
+    points: [
+      'Loaded data from S3 into Snowflake using a storage integration and IAM trust policy',
+      'Cleaned, transformed and aggregated 1,000 household records in Snowflake SQL',
+      'Modelled low, middle and high income-level scenarios with SQL updates to usage and cost savings',
+      'Tableau dashboard: consumption (kWh) and cost savings by country, region and energy source',
+    ],
+    figures: [
+      { value: '25', label: 'countries' },
+      { value: '5', label: 'energy sources' },
+      { value: 'Wind', label: 'highest kWh and savings' },
+    ],
+    link: 'https://www.linkedin.com/feed/update/urn:li:activity:7383559729836609536/',
+  },
+  {
+    id: 'insurance',
+    title: 'Insurance Claims & Policy Analysis',
+    stack: ['Power BI', 'SQL Server', 'DAX', 'Data modelling'],
+    image: './projects/insurance.webp',
+    summary:
+      'Power BI dashboard for an insurance company covering customers, policies and claims, modelled from MS SQL Server.',
+    points: [
+      'Imported and modelled customer, policy and claim tables from SQL Server',
+      'DAX measures for premium, coverage and claim totals and claim status',
+      'Slicers by policy, claim and customer; ribbon, bar and line charts; active vs. inactive policies',
+      'Travel policies bring in the most premium (2.5M); adults account for the largest claim amount (8.8M)',
+    ],
+    figures: [
+      { value: '10K', label: 'customers' },
+      { value: '10.1K', label: 'claims analysed' },
+      { value: '5', label: 'policy types' },
+    ],
+    link: 'https://www.linkedin.com/feed/update/urn:li:activity:7381592643815890944/',
+  },
+  {
+    id: 'upi',
+    title: 'UPI Transactions Analysis',
+    stack: ['Power BI', 'DAX', 'Bookmarks', 'Conditional formatting'],
+    image: './projects/upi.webp',
+    summary:
+      'Interactive Power BI report on 2024 UPI transactions across Bangalore, Delhi, Hyderabad and Mumbai.',
+    points: [
+      'Monthly transaction and balance trends, switchable between line and column views with bookmarks',
+      'Ten slicers: bank, city, device, gender, age group, merchant, payment method, purpose and type',
+      'City × currency matrix with conditional formatting for amounts and remaining balances',
+      'Volume peaked in May (1.71M) and dipped in August (1.60M)',
+    ],
+    figures: [
+      { value: '12', label: 'months of 2024' },
+      { value: '4', label: 'cities' },
+      { value: '10', label: 'slicers' },
+    ],
+    link: 'https://www.linkedin.com/feed/update/urn:li:activity:7381896255297392640/',
+  },
+  {
+    id: 'student',
+    title: 'Student Mental-Health Survey Analysis',
+    stack: ['SQL Server', 'Tableau', 'Data cleaning'],
+    image: './projects/student.webp',
+    summary:
+      'SQL Server and Tableau analysis of the factors linked to depression in a 502-student survey.',
+    points: [
+      'Profiled all 13 fields with SQL aggregations and added derived columns such as age group (CASE)',
+      'Connected SQL Server live to Tableau',
+      'Dashboard comparing academic pressure, financial stress, study satisfaction, sleep and study hours',
+    ],
+    figures: [
+      { value: '502', label: 'survey responses' },
+      { value: '13', label: 'fields' },
+      { value: '5', label: 'factor views' },
+    ],
+    link: 'https://www.linkedin.com/feed/update/urn:li:activity:7382814947090767874/',
+  },
+]
 
 export const experience = [
   {
