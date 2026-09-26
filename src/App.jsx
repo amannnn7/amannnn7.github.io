@@ -9,6 +9,7 @@ const fmt = (n) => n.toLocaleString('en-IN')
 const NAV = [
   ['impact', 'Impact'],
   ['work', 'Work'],
+  ['projects', 'Projects'],
   ['experience', 'Experience'],
   ['skills', 'Skills'],
 ]
@@ -256,30 +257,71 @@ function Work() {
           ))}
         </div>
 
-        {projects.length > 0 && (
-          <div className="mt-16">
-            <h3 className="reveal mb-6 font-display text-xl font-bold">Side projects</h3>
-            <div className="grid gap-6 md:grid-cols-2">
-              {projects.map((p) => (
-                <a
-                  key={p.title}
-                  href={p.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="reveal flex flex-col gap-3 rounded-2xl border border-line p-6 transition-colors hover:border-amber"
-                >
-                  <h4 className="font-semibold">{p.title} ↗</h4>
-                  <p className="text-muted">{p.summary}</p>
-                  <ul className="flex flex-wrap gap-2">
-                    {p.stack.map((s) => (
-                      <Chip key={s}>{s}</Chip>
-                    ))}
-                  </ul>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
+      </div>
+    </section>
+  )
+}
+
+function Projects() {
+  if (projects.length === 0) return null
+  return (
+    <section id="projects" className="border-t border-line bg-panel/40">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+        <SectionHead eyebrow="Analytics projects" title="Dashboards I've built end to end">
+          Personal projects in Power BI, Tableau, SQL Server and Snowflake. Click a dashboard to see it full size.
+        </SectionHead>
+        <div className="grid gap-8 lg:grid-cols-2">
+          {projects.map((p) => (
+            <article
+              key={p.id}
+              className="reveal flex flex-col overflow-hidden rounded-2xl border border-line bg-ink transition-colors hover:border-muted/60"
+            >
+              <a
+                href={p.image}
+                target="_blank"
+                rel="noreferrer"
+                className="group relative block aspect-[16/9] overflow-hidden border-b border-line bg-panel"
+                aria-label={`Open the ${p.title} dashboard full size`}
+              >
+                <img
+                  src={p.image}
+                  alt={`${p.title} dashboard`}
+                  loading="lazy"
+                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </a>
+              <div className="flex flex-1 flex-col gap-4 p-6">
+                <h3 className="font-display text-lg leading-snug font-bold">{p.title}</h3>
+                <ul className="flex flex-wrap gap-2">
+                  {p.stack.map((s) => (
+                    <Chip key={s}>{s}</Chip>
+                  ))}
+                </ul>
+                <p className="text-muted">{p.summary}</p>
+                <ul className="flex flex-col gap-1.5 text-[15px]">
+                  {p.points.map((b) => (
+                    <li key={b} className="flex gap-2">
+                      <span className="mt-2.5 h-px w-3 shrink-0 bg-cyan" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+                <dl className="mt-auto grid grid-cols-3 gap-3 border-t border-line pt-4">
+                  {p.figures.map((f) => (
+                    <div key={f.label} className="flex flex-col-reverse gap-0.5">
+                      <dt className="text-xs text-muted">{f.label}</dt>
+                      <dd className="font-display text-xl font-bold text-amber tabular-nums">{f.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <div className="flex flex-wrap gap-3">
+                  <Button href={p.link}>View post ↗</Button>
+                  {p.repo && <Button href={p.repo}>Code ↗</Button>}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -287,7 +329,7 @@ function Work() {
 
 function Experience() {
   return (
-    <section id="experience" className="border-t border-line bg-panel/40">
+    <section id="experience" className="border-t border-line">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <SectionHead eyebrow="Experience" title="Where I've worked and studied" />
         <ol className="relative flex flex-col gap-10 border-l border-line pl-6 sm:pl-10">
@@ -321,7 +363,7 @@ function Experience() {
 
 function Skills() {
   return (
-    <section id="skills" className="border-t border-line">
+    <section id="skills" className="border-t border-line bg-panel/40">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <SectionHead eyebrow="Toolkit" title="What I work with" />
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -409,6 +451,7 @@ export default function App() {
         <Hero />
         <Impact />
         <Work />
+        <Projects />
         <Experience />
         <Skills />
         <Contact />
