@@ -1,6 +1,6 @@
 # Aman · Data & Automation Portfolio
 
-**Live site → https://amannnn7.github.io**
+**Live site → https://amannnn7.github.io/portfolio/**
 
 A personal portfolio for data engineering and automation work. The hero is an interactive 3D data pipeline, built with Three.js: raw records (cyan) are extracted from source systems, pass through a validation core, and load into a warehouse as clean rows (amber). It mirrors the validation and ETL tooling I build at American Express.
 
